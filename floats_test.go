@@ -754,7 +754,7 @@ func TestMulTo(t *testing.T) {
 }
 
 func TestNearest(t *testing.T) {
-	s := []float64{6.2, 3, 5, 6.2, 8}
+	s := []float64{6.2, 3, -2, 1, 8}
 	ind := Nearest(s, 2.0)
 	if ind != 1 {
 		t.Errorf("Wrong index returned when value is less than all of elements")
@@ -787,6 +787,11 @@ func TestNearest(t *testing.T) {
 	if ind != 1 {
 		t.Errorf("Wrong index returned when value is exactly between two closest elements")
 	}
+	ind = Nearest(s, 0)
+	if ind != 3 {
+		t.Errorf("Wrong index returned when elements get closer from the lower then upper end")
+	}
+	
 	ind = Nearest(s, math.MaxFloat64)
 	if ind != 4 {
 		t.Errorf("Wrong index returned when distance between elements is less than value resolution")

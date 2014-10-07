@@ -523,7 +523,7 @@ func Nearest(s []float64, v float64) int {
 			continue
 		}
 		if val > v {
-			if v - closest > val - closest {
+			if v - closest > val - v {
 				closest = val
 				ind = i
 				continue
@@ -533,6 +533,7 @@ func Nearest(s []float64, v float64) int {
 		if val > closest {
 			closest = val
 			ind = i
+			continue
 		} 
 	}
 	return ind
