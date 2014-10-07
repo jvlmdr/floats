@@ -787,6 +787,10 @@ func TestNearest(t *testing.T) {
 	if ind != 1 {
 		t.Errorf("Wrong index returned when value is exactly between two closest elements")
 	}
+	ind = Nearest(s, math.MaxFloat64)
+	if ind != 4 {
+		t.Errorf("Wrong index returned when distance between elements is less than value resolution")
+	}
 }
 
 func TestNearestWithinSpan(t *testing.T) {
