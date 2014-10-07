@@ -504,6 +504,44 @@ func MulTo(dst, s, t []float64) []float64 {
 // Panics if len(s) == 0.
 func Nearest(s []float64, v float64) int {
 	var ind int
+	closest := s[0]
+	for i, val := range s {
+		if closest > v {
+			if val > v {
+				if val < closest {
+					closest = val
+					ind = i
+					continue
+				}
+				continue
+			}
+			if closest - v > v - val {
+				closest = val
+				ind = i
+				continue
+			}
+			continue
+		}
+		if val > v {
+			if v - closest > val - closest {
+				closest = val
+				ind = i
+				continue
+			}
+			continue
+		}
+		if val > closest {
+			closest = val
+			ind = i
+		} 
+	}
+	return ind
+}
+
+// NearestOld is the old version of nearest, used
+// for performance comparisons.
+func NearestOld(s []float64, v float64) int {
+	var ind int
 	dist := math.Abs(v - s[0])
 	for i, val := range s {
 		newDist := math.Abs(v - val)
@@ -514,6 +552,7 @@ func Nearest(s []float64, v float64) int {
 	}
 	return ind
 }
+
 
 // NearestWithinSpan return the index of a hypothetical vector created
 // by Span with length n and bounds l and u whose value is closest
