@@ -1060,3 +1060,28 @@ func BenchmarkDotHuge(b *testing.B) {
 	s2 := RandomSlice(HUGE)
 	benchmarkDot(b, s1, s2)
 }
+func benchmarkNearest(b *testing.B, s []float64, v float64) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		Nearest(s, v)
+	}
+}
+
+func BenchmarkNearestSmall(b *testing.B) {
+	s := RandomSlice(SMALL)
+	benchmarkNearest(b, s, 0.0)
+}
+
+func BenchmarkNearestMed(b *testing.B) {
+	s := RandomSlice(MEDIUM)
+	benchmarkNearest(b, s, 0.0)
+}
+
+func BenchmarkNearestLarge(b *testing.B) {
+	s := RandomSlice(LARGE)
+	benchmarkNearest(b, s, 0.0)
+}
+func BenchmarkNearestHuge(b *testing.B) {
+	s := RandomSlice(HUGE)
+	benchmarkNearest(b, s, 0.0)
+}
