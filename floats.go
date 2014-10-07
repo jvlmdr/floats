@@ -515,7 +515,7 @@ func Nearest(s []float64, v float64) int {
 				}
 				continue
 			}
-			if closest - v > v - val {
+			if closest-v > v-val {
 				closest = val
 				ind = i
 				continue
@@ -523,7 +523,7 @@ func Nearest(s []float64, v float64) int {
 			continue
 		}
 		if val > v {
-			if v - closest > val - v {
+			if v-closest > val-v {
 				closest = val
 				ind = i
 				continue
@@ -534,7 +534,7 @@ func Nearest(s []float64, v float64) int {
 			closest = val
 			ind = i
 			continue
-		} 
+		}
 	}
 	return ind
 }
@@ -553,7 +553,6 @@ func NearestOld(s []float64, v float64) int {
 	}
 	return ind
 }
-
 
 // NearestWithinSpan return the index of a hypothetical vector created
 // by Span with length n and bounds l and u whose value is closest

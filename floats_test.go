@@ -791,7 +791,7 @@ func TestNearest(t *testing.T) {
 	if ind != 3 {
 		t.Errorf("Wrong index returned when elements get closer from the lower then upper end")
 	}
-	
+
 	ind = Nearest(s, math.MaxFloat64)
 	if ind != 4 {
 		t.Errorf("Wrong index returned when distance between elements is less than value resolution")
